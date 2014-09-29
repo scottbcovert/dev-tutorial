@@ -9,11 +9,19 @@ There is so much information about development on the Salesforce/Salesforce1/For
 ##Prerequisites  
 To begin you will need to [sign up for your own Salesforce development org](https://developer.salesforce.com/signup). You will also want to set up your local machine with a Force.com IDE. There are several choices here, but I'd recommend [MavensMate](http://mavensmate.com/) for [Sublime Text](http://www.sublimetext.com/).
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step0a.png)
+
 After installing your Force.com IDE (note: this tutorial assumes you are using MavensMate) you will need to set up a new project that is associated with your new Salesforce development org. After creating your org you should receive an email from _info@sforce.com_ containing a login link where you can create your new password.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step0b.png)
 
 Afterwards you will be redirected to the org, where you should reset your security token by clicking **Your Name>>My Settings>>Personal>>Reset My Security Token**. You will then receive an email from _support@salesforce.com_ with the subject **salesforce.com security token confirmation**. You will need the contained security token to create your new MavensMate project so you should copy/paste it to your clipboard.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step0c.png)
+
 Next, open up Sublime Text and click **MavensMate>>Project>>New Project**. You will then be presented the new project modal; enter a name for your project, your username, and your password followed by the security token copied to your clipboard. After selecting **Developer** from the edition dropdown you can click **Create Project**.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step0d.png)
 
 The last setup step is cloning this repository to your local machine within your newly created MavensMate project. In the terminal navigate to your project's folder within the MavensMate workspace and run **git clone https://github.com/scottbcovert/dev-tutorial.git** This will create the dev-tutorial folder within your MavensMate project folder. You will want to delete the original _src_ folder and then rename the _dev-tutorial_ folder to _src_. Navigate into the new _src_ folder and run *git checkout -f step-1* and then save. You should now have a git repository pointing to the _step-1_ commit of this tutorial within your Salesforce org's src folder.
 
@@ -22,6 +30,8 @@ This repository is meant to serve as a development walk-through with each commit
 
 ###Step 1: Creating Your First Page  
 This step provides the source code for your first Visualforce page named _myFirstApp_, which should display the famous **Hello World!** message. Note how Visualforce pages follow a node-tree structure similar to XML with everything wrapped inside an **&lt;apex:page&gt;** tag; this tag is required and serves as the root node for all Visualforce pages. Once the page has been saved/uploaded to your Salesforce org it can be [viewed within your browser](https://login.salesforce.com/apex/myFirstApp)
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step1.png)
 
 ###Step 2a: Displaying Field Values with Visualforce  
 Visualforce pages use the same expression language as formulas--that is, anything inside **{! }** is evaluated as an expression that can access values from records that are currently in context. For example, you can display the current user's first name by adding the **{!$User.FirstName}** expression to your page.
@@ -36,6 +46,8 @@ For example, to use the standard controller for accounts, add the _standardContr
 After you save your page, the Accounts tab is highlighted for the page, and the look-and-feel for the components on the page match the Accounts tab. Additionally, you can now access fields on the account record currently in context by using **{!account.&lt;fieldName&gt;}** expression syntax.
 
 For example, to display an account's name on a page, use **{!account.name}** in the page markup. Note that refreshing the page leaves a blank value for the account name value; this is because Salesforce uses the **id** HTML parameter (currently undefined) to set the record context for the **standardController** attribute. If you navigate to an account record, copy its id to the clipboard, and then append **?id=[Insert Id Here]** to [your app's page](https://login.salesforce.com/apex/myFirstApp) you should see the name field is populated properly.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step2b.png)
 
 ###Step 3a: Using the Visualforce Component Library  
 Up to this point, the only Visualforce tag that has been used in the examples is the mandatory **&lt;apex:page&gt;** tag that must be placed at the start and end of all Visualforce markup. However, just as you can insert images or tables into an HTML document with the **&lt;img&gt;** or **&lt;table&gt;** tags, respectively, you can add user interface components to your Visualforce pages using tags that are defined in the Visualforce component library.
@@ -53,6 +65,8 @@ For example, this step provides the source code to display the details of the co
 ###Step 4: Overriding an Existing Page with a Visualforce Page  
 Suppose you want to change the format of an existing page, such as the standard account detail page. All the information for an account displays on a single page. If there's a lot of information, you might end up doing a lot of scrolling. This step provides the source code for your Visualforce page to make each section for an account display in a tab, such as contacts, opportunities, and so on.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step4.png)
+
 ###Step 5: Using Input Components in a Page  
 So far the examples in this quick start tutorial show ways that you can display data in a Visualforce page. To capture input from a user, use the **&lt;apex:form&gt;** tag with one or more input components and a **&lt;apex:commandLink&gt;** or **&lt;apex:commandButton&gt;** tag to submit the form.
 
@@ -64,10 +78,14 @@ Notice that the **&lt;apex:inputField&gt;** tag is bound to the account name fie
 
 Also notice that the **&lt;apex:commandButton&gt;** tag has an action attribute. The value for this attribute invokes the save action of the standard Account controller, which performs identically to the Save button on the standard Account edit page.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step5.png)
+
 ###Step 6: Enabling Inline Editing  
 Visualforce pages 21.0 and above support inline editing. Inline editing lets users quickly edit field values, right on a record’s detail page. Editable cells display a pencil icon when you hover over the cell, while non-editable cells display a lock icon.  
 The **&lt;apex:detail&gt;** component has an attribute that activates inline editing, while the **&lt;apex:inlineEditSupport&gt;** component provides inline editing functionality to several container components.  
 This step provides the source code for your Visualforce page to display the power of inline editing.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step6.png)
 
 ###Step 7: Converting a Page to a PDF File  
 You can render any page as a PDF by adding the _renderAs_ attribute to the **&lt;apex:page&gt;** component, and specifying _pdf_ as the rendering service.
@@ -78,8 +96,12 @@ Note that **&lt;style&gt;** is CSS markup, not Visualforce markup. It defines th
 
 Also note that some of the output text is contained in an **&lt;apex:panelGrid&gt;** component. A panel grid renders as an HTML table. Each component found in the body of the **&lt;apex:panelGrid&gt;** component is placed into a corresponding cell in the first row until the number of columns is reached. As there is only a single cell, each output text is displayed in a separate row.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step7.png)
+
 ###Step 8a: Building a Table of Data in a Page  
 Some Visualforce components, such as **&lt;apex:pageBlockTable&gt;** or **&lt;apex:dataTable&gt;**, allow you to display information from multiple records at a time by iterating over a collection of records. To illustrate this concept, this step provides the source code for your Visualforce page to list the contacts associated with an account that is currently in context using the **&lt;apex:pageBlockTable&gt;** component.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step8a.png)
 
 ###Step 8b: Editing a Table of Data in a Page  
 Using **&lt;apex:inputField&gt;** in the data table columns, you can create a table with editable fields. Using **&lt;apex:commandButton&gt;** you can save the data you change. Any message (such as Saving) is automatically displayed with the **&lt;apex:pageMessages&gt;** tag. This step provides the source code for a Visualforce page that enables you to edit a seriest of Industry types at the same time.
@@ -90,6 +112,8 @@ The **&lt;apex:inputField&gt;** tag automatically generates the correct display 
 
 The page must be enclosed in an **&lt;apex:form&gt;** tag in order to use the **&lt;apex:commandButton&gt;** tag. A form specifies a portion of a Visualforce page that users can interact with.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step8b.png)
+
 ###Step 9a: Building a Custom Controller 
 A _custom controller_ is an Apex class that implements all of the logic for a page without leveraging a standard controller. Use custom controllers when you want your Visualforce page to run entirely in system mode, which does not enforce the permissions and field-level security of the current user.
 
@@ -99,6 +123,8 @@ This step provides the source code for your first custom controller, named _MyCo
 The custom controller is associated with the page because of the _controller_ attribute of the **&lt;apex:page&gt;** component.
 
 As with standard controllers and controller extensions, custom controller methods can be referenced with **{! }** notation in the associated page markup. In this step, the **getAccount** method is referenced by the **&lt;apex:inputField&gt;** tag's _value_ attribute, while the **&lt;apex:commandButton&gt;** tag references the **save** method with its _action_ attribute.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step9a.png)
 
 ###Step 9b: Building a Controller Extension  
 A _controller extension_ is an Apex class that extends the functionality of a standard or custom controller. Use controller extensions when:  
@@ -117,5 +143,9 @@ Because this extension works in conjunction with the Account standard controller
 
 Multiple controller extensions can be defined for a single page through a comma-separated list. This allows for overrides of methods with the same name.
 
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step9b.png)
+
 ###Step 9c: Building a Custom List Controller  
 A custom list controller is similar to a standard list controller. Custom list controllers can implement Apex logic that you define to show or act on a set of records. This step provides the source code for a custom list controller that uses anti- and semi-joins as part of a SOQL query. The visualforce page displays these records using a mix of standard list controller actions, but depends on iterating over the records returned from the custom list controller.
+
+![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step9c.png)
