@@ -1,15 +1,24 @@
-public class MyController {
+public with sharing class MyController {
+    private final Account acct;  
 
-    private final Account acct;
+    // The constructor passes in the standard controller defined
+    // in the markup below
+    public MyController(ApexPages.StandardSetController controller) {
+        this.acct = (Account)controller.getRecord(); 
+    }    
     
-    // The extension constructor initializes the private member
-    // variable acct by using the getRecord method from the standard
-    // controller.
-    public MyController(ApexPages.StandardController stdController) {
-        this.acct = (Account)stdController.getRecord();
+    public ApexPages.StandardSetController accountRecords {
+        get {
+            if(accountRecords == null) {
+                accountRecords = new ApexPages.StandardSetController(
+                    Database.getQueryLocator([SELECT Name FROM Account WHERE Id NOT IN 
+                        (SELECT AccountId FROM Opportunity WHERE IsClosed = true)]));
+            }
+            return accountRecords;
+        }
+        private set;
     }
-
-    public String getGreeting() {
-        return 'Hello ' + acct.name + ' (' + acct.id + ')';
-    }
+    public List<Account> getAccountPagination() {
+         return (List<Account>) accountRecords.getRecords();
+    }  
 }

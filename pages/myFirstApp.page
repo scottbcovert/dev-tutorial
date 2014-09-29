@@ -1,7 +1,15 @@
-<apex:page standardController="Account" extensions="MyController">
-    {!greeting} <p/>
-    <apex:form>
-        <apex:inputField value="{!account.name}"/> <p/>
-        <apex:commandButton value="Save" action="{!save}"/>
-    </apex:form>
+<apex:page standardController="Account" recordSetVar="accounts" extensions="MyController">
+    <apex:pageBlock title="Viewing Accounts">
+        <apex:form id="theForm">
+            <apex:pageBlockSection >
+                <apex:dataList value="{!accountPagination}" var="acct" type="1">
+                    {!acct.name}
+                </apex:dataList>
+            </apex:pageBlockSection>
+            <apex:panelGrid columns="2">
+                <apex:commandLink action="{!previous}">Previous</apex:commandlink>
+                <apex:commandLink action="{!next}">Next</apex:commandlink>
+            </apex:panelGrid>
+        </apex:form> 
+    </apex:pageBlock>
 </apex:page>
