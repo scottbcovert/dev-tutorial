@@ -1,10 +1,28 @@
-<apex:page standardController="Account">
-    <apex:form> 
-        <apex:pageBlock title="Hello {!$User.FirstName}!">
-            You are viewing the {!account.name} account. <p/>
-            Change Account Name: <p/> 
-            <apex:inputField value="{!account.name}"/> <p/>
-            <apex:commandButton action="{!save}" value="Save New Account Name"/> 
-        </apex:pageBlock>
-    </apex:form> 
+<apex:page standardController="Account" recordSetVar="records" id="thePage"> 
+    <apex:form id="theForm"> 
+        <apex:pageBlock id="thePageBlock"> 
+            <apex:pageBlockTable value="{!records}" var="record" id="thePageBlockTable"> 
+                <apex:column >
+                    <apex:outputField value="{!record.Name}" id="AccountNameDOM" /> 
+                    <apex:facet name="header">Name</apex:facet>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!record.Type}" id="AccountTypeDOM" /> 
+                    <apex:facet name="header">Type</apex:facet>
+                </apex:column>
+                <apex:column >
+                    <apex:outputField value="{!record.Industry}" 
+                        id="AccountIndustryDOM" />  
+                        <apex:facet name="header">Industry</apex:facet>
+                </apex:column>
+                <apex:inlineEditSupport event="ondblClick" 
+                        showOnEdit="saveButton,cancelButton" hideOnEdit="editButton" /> 
+            </apex:pageBlockTable> 
+            <apex:pageBlockButtons > 
+                <apex:commandButton value="Edit" action="{!save}" id="editButton" />
+                <apex:commandButton value="Save" action="{!save}" id="saveButton" />
+                <apex:commandButton value="Cancel" action="{!cancel}" id="cancelButton" />
+            </apex:pageBlockButtons> 
+        </apex:pageBlock> 
+    </apex:form>
 </apex:page>
