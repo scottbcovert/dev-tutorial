@@ -1,28 +1,18 @@
-<apex:page standardController="Account" recordSetVar="records" id="thePage"> 
-    <apex:form id="theForm"> 
-        <apex:pageBlock id="thePageBlock"> 
-            <apex:pageBlockTable value="{!records}" var="record" id="thePageBlockTable"> 
-                <apex:column >
-                    <apex:outputField value="{!record.Name}" id="AccountNameDOM" /> 
-                    <apex:facet name="header">Name</apex:facet>
-                </apex:column>
-                <apex:column >
-                    <apex:outputField value="{!record.Type}" id="AccountTypeDOM" /> 
-                    <apex:facet name="header">Type</apex:facet>
-                </apex:column>
-                <apex:column >
-                    <apex:outputField value="{!record.Industry}" 
-                        id="AccountIndustryDOM" />  
-                        <apex:facet name="header">Industry</apex:facet>
-                </apex:column>
-                <apex:inlineEditSupport event="ondblClick" 
-                        showOnEdit="saveButton,cancelButton" hideOnEdit="editButton" /> 
-            </apex:pageBlockTable> 
-            <apex:pageBlockButtons > 
-                <apex:commandButton value="Edit" action="{!save}" id="editButton" />
-                <apex:commandButton value="Save" action="{!save}" id="saveButton" />
-                <apex:commandButton value="Cancel" action="{!cancel}" id="cancelButton" />
-            </apex:pageBlockButtons> 
-        </apex:pageBlock> 
-    </apex:form>
+<apex:page standardController="Account" renderAs="pdf" applyBodyTag="false">
+    <head>
+        <style> 
+            body { font-family: 'Arial Unicode MS'; }
+            .companyName { font: bold 30px; color: red; }  
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>New Account Name!</h1>
+     
+        <apex:panelGrid columns="1" width="100%">
+            <apex:outputText value="{!account.Name}" styleClass="companyName"/>
+            <apex:outputText value="{!NOW()}"></apex:outputText>
+        </apex:panelGrid>
+        </center>
+    </body>
 </apex:page>
