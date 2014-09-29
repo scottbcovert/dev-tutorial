@@ -1,12 +1,20 @@
-<apex:page standardController="Account">
-   <apex:pageBlock title="Hello {!$User.FirstName}!">
-      You are viewing the {!account.name} account.
+<apex:page standardController="Account" recordSetVar="accounts" 
+   tabstyle="account" sidebar="false">
+   <apex:form> 
+   <apex:pageBlock >
+   <apex:pageMessages />
+   <apex:pageBlockButtons>
+      <apex:commandButton value="Save" action="{!save}"/>
+   </apex:pageBlockButtons>
+
+   <apex:pageBlockTable value="{!accounts}" var="a">
+      <apex:column value="{!a.name}"/>
+      
+      <apex:column headerValue="Industry">
+         <apex:inputField value="{!a.Industry}"/>
+      </apex:column>
+
+   </apex:pageBlockTable>
    </apex:pageBlock>
-   <apex:pageBlock title="Contacts">
-      <apex:pageBlockTable value="{!account.Contacts}" var="contact">
-         <apex:column value="{!contact.Name}"/>
-         <apex:column value="{!contact.MailingCity}"/>
-         <apex:column value="{!contact.Phone}"/>
-      </apex:pageBlockTable>
-   </apex:pageBlock>
+   </apex:form>
 </apex:page>
