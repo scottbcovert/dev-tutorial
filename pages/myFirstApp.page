@@ -2,4 +2,5 @@
 	<apex:pageBlock title="Hello {!$User.FirstName}!">	
 		You are viewing the {!account.name} account.
 	</apex:pageBlock>
+	<apex:detail/>
 </apex:page>
