@@ -1,20 +1,15 @@
-<apex:page standardController="Account" recordSetVar="accounts" 
-   tabstyle="account" sidebar="false">
-   <apex:form> 
-   <apex:pageBlock >
-   <apex:pageMessages />
-   <apex:pageBlockButtons>
-      <apex:commandButton value="Save" action="{!save}"/>
-   </apex:pageBlockButtons>
-
-   <apex:pageBlockTable value="{!accounts}" var="a">
-      <apex:column value="{!a.name}"/>
-      
-      <apex:column headerValue="Industry">
-         <apex:inputField value="{!a.Industry}"/>
-      </apex:column>
-
-   </apex:pageBlockTable>
-   </apex:pageBlock>
-   </apex:form>
+<apex:page controller="MyController" tabstyle="Account">
+    <apex:form>
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages/>
+            <apex:pageBlockSection>
+                <apex:inputField value="{!Account.name}"/>
+                <apex:inputField value="{!Account.phone}"/>
+                <apex:inputField value="{!Account.industry}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
 </apex:page>
