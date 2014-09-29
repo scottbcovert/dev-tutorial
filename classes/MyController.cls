@@ -1,21 +1,15 @@
 public class MyController {
 
-    public Account account { get; private set; }
-
-    public MyController() {
-        Id id = ApexPages.currentPage().getParameters().get('id');
-        account = (id == null) ? new Account() : 
-            [SELECT Name, Phone, Industry FROM Account WHERE Id = :id];
+    private final Account acct;
+    
+    // The extension constructor initializes the private member
+    // variable acct by using the getRecord method from the standard
+    // controller.
+    public MyController(ApexPages.StandardController stdController) {
+        this.acct = (Account)stdController.getRecord();
     }
 
-    public PageReference save() {
-        try {
-            upsert(account);
-        } catch(System.DMLException e) {
-            ApexPages.addMessages(e);
-            return null;
-        }
-        //  After Save, navigate to the default view page:
-        return (new ApexPages.StandardController(account)).view();
+    public String getGreeting() {
+        return 'Hello ' + acct.name + ' (' + acct.id + ')';
     }
 }

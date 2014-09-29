@@ -1,15 +1,7 @@
-<apex:page controller="MyController" tabstyle="Account">
+<apex:page standardController="Account" extensions="MyController">
+    {!greeting} <p/>
     <apex:form>
-        <apex:pageBlock mode="edit">
-            <apex:pageMessages/>
-            <apex:pageBlockSection>
-                <apex:inputField value="{!Account.name}"/>
-                <apex:inputField value="{!Account.phone}"/>
-                <apex:inputField value="{!Account.industry}"/>
-            </apex:pageBlockSection>
-            <apex:pageBlockButtons location="bottom">
-                <apex:commandButton value="Save" action="{!save}"/>
-            </apex:pageBlockButtons>
-        </apex:pageBlock>
+        <apex:inputField value="{!account.name}"/> <p/>
+        <apex:commandButton value="Save" action="{!save}"/>
     </apex:form>
 </apex:page>
