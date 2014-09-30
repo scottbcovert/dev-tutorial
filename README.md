@@ -23,12 +23,14 @@ Next, open up Sublime Text and click **MavensMate>>Project>>New Project**. You w
 
 ![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step0d.png)
 
-The last setup step is cloning this repository to your local machine within your newly created MavensMate project. In the terminal navigate to your project's folder within the MavensMate workspace and run **git clone https://github.com/scottbcovert/dev-tutorial.git** This will create the dev-tutorial folder within your MavensMate project folder. You will want to delete the original _src_ folder and then rename the _dev-tutorial_ folder to _src_. Navigate into the new _src_ folder and run *git checkout -f step-1* and then save. You should now have a git repository pointing to the _step-1_ commit of this tutorial within your Salesforce org's src folder.
+The last setup step is cloning this repository to your local machine within your newly created MavensMate project. In the terminal navigate to your project's folder within the MavensMate workspace and run **git clone https://github.com/scottbcovert/dev-tutorial.git** This will create the dev-tutorial folder within your MavensMate project folder. You will want to delete the original _src_ folder and then rename the _dev-tutorial_ folder to _src_. Navigate into the new _src_ folder and run *git checkout -f step-1*. You should now have a git repository pointing to the _step-1_ commit of this tutorial within your Salesforce org's src folder.
 
 ##Instructions  
 This repository is meant to serve as a development walk-through with each commit being tied to the next step in the tutorial. You will first need to clone this repository to your local machine; then with each new step in the headings below you will want to run **_git checkout -f step-X_** (where X is the current step #) on your local repo to update your code accordingly. After each checkout you should then save the new code to your Salesforce org and review the changes (from both a user and developer perspective) to make sure you fully understand before moving to the next step.
 
 ###Step 1: Creating Your First Page  
+_Note: This step includes new metadata for your Salesforce org (the_ myFirstApp _Visualforce page). You will thus need to save the corresponding .xml file to your Salesforce server before saving the .page file for the first time._
+
 This step provides the source code for your first Visualforce page named _myFirstApp_, which should display the famous **Hello World!** message. Note how Visualforce pages follow a node-tree structure similar to XML with everything wrapped inside an **&lt;apex:page&gt;** tag; this tag is required and serves as the root node for all Visualforce pages. Once the page has been saved/uploaded to your Salesforce org it can be [viewed within your browser](https://login.salesforce.com/apex/myFirstApp)
 
 ![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step1.png)
@@ -115,6 +117,8 @@ The page must be enclosed in an **&lt;apex:form&gt;** tag in order to use the **
 ![](https://raw.githubusercontent.com/scottbcovert/dev-tutorial/master/images/Step8b.png)
 
 ###Step 9a: Building a Custom Controller 
+_Note: This step includes new metadata for your Salesforce org (the_ MyController _Apex class). You will thus need to save the corresponding .xml file to your Salesforce server before saving the .cls file for the first time._
+
 A _custom controller_ is an Apex class that implements all of the logic for a page without leveraging a standard controller. Use custom controllers when you want your Visualforce page to run entirely in system mode, which does not enforce the permissions and field-level security of the current user.
 
 A custom controller is an Apex class that uses the default, no-argument constructor for the outer, top-level class. You cannot create a custom controller constructor that includes parameters.  
